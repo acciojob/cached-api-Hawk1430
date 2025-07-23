@@ -20,7 +20,10 @@ const App = () => {
 			} catch (err) {
 				console.error("Failed to fetch posts", err);
 			} finally {
-				setLoading(false);
+				// Simulate a delay before hiding loading
+				setTimeout(() => {
+					setLoading(false);
+				}, 2000);
 			}
 		};
 
@@ -35,30 +38,30 @@ const App = () => {
 
 	return (
 		<div style={{ padding: "1rem" }}>
-			<h1>Posts Viewer</h1>
-
-			<label>
-				Filter by User ID:{" "}
-				<input
-					type="number"
-					value={userId}
-					onChange={(e) => setUserId(e.target.value)}
-					placeholder="Enter userId (1-10)"
-				/>
-			</label>
-
 			{loading ? (
-				<p>Loading posts...</p>
+				<p>Loading...</p>
 			) : (
-				<ul>
-					{filteredPosts.map((post) => (
-						<li key={post.id} style={{ marginBottom: "1rem" }}>
-							<strong>{post.title}</strong>
-							<p>{post.body}</p>
-							<small>User ID: {post.userId}</small>
-						</li>
-					))}
-				</ul>
+				<>
+					<h1>Posts Viewer</h1>
+					<label>
+						Filter by User ID:{" "}
+						<input
+							type="number"
+							value={userId}
+							onChange={(e) => setUserId(e.target.value)}
+							placeholder="Enter userId (1-10)"
+						/>
+					</label>
+					<ul>
+						{filteredPosts.map((post) => (
+							<li key={post.id} style={{ marginBottom: "1rem" }}>
+								<strong>{post.title}</strong>
+								<p>{post.body}</p>
+								<small>User ID: {post.userId}</small>
+							</li>
+						))}
+					</ul>
+				</>
 			)}
 		</div>
 	);
