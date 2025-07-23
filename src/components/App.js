@@ -4,7 +4,7 @@ import "regenerator-runtime/runtime";
 
 const App = () => {
 	const [posts, setPosts] = useState([]);
-	const [userId, setUserId] = useState(""); // Optional input to filter posts
+	const [userId, setUserId] = useState("");
 	const [loading, setLoading] = useState(false);
 
 	// Fetch all posts from API when component mounts
@@ -55,7 +55,7 @@ const App = () => {
 					<ul>
 						{filteredPosts.map((post) => (
 							<li key={post.id} style={{ marginBottom: "1rem" }}>
-								<strong>{post.title}</strong>
+								<h4>{post.title}</h4>
 								<p>{post.body}</p>
 								<small>User ID: {post.userId}</small>
 							</li>
